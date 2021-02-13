@@ -1,0 +1,1 @@
+﻿select * from usuario where codigo_usuario = 1

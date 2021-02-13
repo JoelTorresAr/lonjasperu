@@ -1,0 +1,68 @@
+
+
+select 
+	
+	p.nombre insumo, 
+	sum(dp.cantidad)::integer cantidad, 
+	p.precio::integer,
+	round(sum(dp.cantidad) * p.precio):: integer valor_pedido,
+	trunc(round(sum(dp.cantidad) * p.precio)/(select sum(valor_pedido) from vista_pedido where fechapedido>='10/09/2017' and fechapedido <='29/09/2017'),2) as participacion
+	
+from detallepedido dp inner join producto p on dp.codproducto = p.codproducto 
+inner join pedido pe on dp.codpedido = pe.codpedido
+where pe.fechapedido>='10/09/2017' and pe.fechapedido <='29/09/2017'
+group by p.nombre, p.precio
+order by valor_pedido desc
+
+
+
+
+
+
+
+
+
+
+--ELIMINAR VISTA
+drop view vista_pedido
+--ELIMINAR VISTA
+
+
+--CREAR VISTA------------------------------------------------------------------
+create view vista_pedido as
+select 
+	i.fechapedido,
+	p.nombre insumo, 
+	sum(dp.cantidad)::integer cantidad, 
+	p.precio::integer,
+	round(sum(dp.cantidad) * p.precio):: integer valor_pedido
+	
+from detallepedido dp inner join producto p on dp.codproducto = p.codproducto 
+inner join pedido i on dp.codpedido = i.codpedido
+group by p.nombre, p.precio, i.fechapedido
+order by valor_pedido desc
+--CREAR VISTA------------------------------------------------------------------
+
+
+
+
+
+
+
+select * from vista_pedido
+
+select sum(valor_pedido) from vista_pedido where fechapedido>='10/09/2017' and fechapedido <='29/09/2017'
+
+select * from vista_pedido
+where fechapedido>='10/09/2017' and fechapedido <='29/09/2017'
+
+
+
+
+
+
+
+
+
+
+

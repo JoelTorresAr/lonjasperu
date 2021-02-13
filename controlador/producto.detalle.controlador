@@ -1,0 +1,41 @@
+<?php
+
+    require_once '../negocio/Producto.class.php';
+    require_once '../negocio/Compra.class.php';
+    require_once '../negocio/Proveedor.class.php';
+    require_once '../util/funciones/Funciones.class.php';
+    
+    $codProveedor = $_POST["codProveedor"];
+    $cod
+    $objProducto = new Producto();
+    
+    try{
+        $registross = $objProducto->listarDetalle($codProducto);
+    } catch (Exception $ex) {
+
+    }
+    
+?>
+
+<h3>Insumo: 
+    <?php
+    echo $Nom_Producto
+    ?>
+</h3>
+
+<table id="tabla-detalle-proucto" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Codigo Proveedor</th>
+            <th>Proveedor</th>
+            <th>R.U.C.</th>
+            <th>Direccion</th>
+            <th>Costo de Insumo x Unidad</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody id="insumos-datos-detalle">
+        <?php
+            echo 
+    </tbody>
+</table>
